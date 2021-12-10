@@ -20,21 +20,16 @@ struct ToDo: Equatable {
     
     static func loadSampleToDos() -> [ToDo] {
         let toDo1 = ToDo(title: "ToDo 1", isComplete: false,
-                         dueDate: Date(), notes: "Notes 1"
-        )
+                         dueDate: Date(), notes: "Notes 1")
         let toDo2 = ToDo(title: "ToDo 2", isComplete: false,
-                         dueDate: Date(), notes: "Notes 2"
-        )
+                         dueDate: Date(), notes: "Notes 2")
         let toDo3 = ToDo(title: "ToDo 3", isComplete: false,
-                         dueDate: Date(), notes: "Notes 3"
-        )
+                         dueDate: Date(), notes: "Notes 3")
         
         return [toDo1, toDo2, toDo3]
     }
     
     static func ==(lhs: ToDo, rhs: ToDo) -> Bool {
         return lhs.id == rhs.id
-        
-        
     }
 }
