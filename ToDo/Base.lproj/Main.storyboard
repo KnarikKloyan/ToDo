@@ -48,7 +48,7 @@
         <!--New ToDo-->
         <scene sceneID="EnA-JC-b7i">
             <objects>
-                <tableViewController id="jqK-9Q-vhh" sceneMemberID="viewController">
+                <tableViewController id="jqK-9Q-vhh" customClass="ToDoDetailTableViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="GVj-J0-H3B">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -68,6 +68,10 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="returnPressed:" destination="jqK-9Q-vhh" eventType="primaryActionTriggered" id="o6l-4o-Ybs"/>
+                                                        <action selector="textEditingChanged:" destination="jqK-9Q-vhh" eventType="editingChanged" id="8xQ-BK-yKo"/>
+                                                    </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-Af-8o5">
                                                     <rect key="frame" x="10" y="6" width="42" height="31"/>
@@ -79,6 +83,9 @@
                                                     <state key="selected" image="checkmark.circle.fill" catalog="system">
                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="isCompleteButtonTapped:" destination="jqK-9Q-vhh" eventType="touchUpInside" id="hOm-9q-vBk"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -120,6 +127,9 @@
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="zCx-Av-HXP">
                                                     <rect key="frame" x="20" y="11" width="374" height="216.5"/>
+                                                    <connections>
+                                                        <action selector="datePickerChanged:" destination="jqK-9Q-vhh" eventType="primaryActionTriggered" id="jmE-WV-ihl"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -171,6 +181,11 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="IRr-OQ-XOV"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="dueDatePickerView" destination="zCx-Av-HXP" id="gSS-lA-ZXd"/>
+                        <outlet property="isCompleteButton" destination="PoQ-Af-8o5" id="wi4-jb-FdI"/>
+                        <outlet property="notesTextView" destination="KVr-Oy-Cqz" id="fKx-oC-f1m"/>
+                        <outlet property="saveButton" destination="IRr-OQ-XOV" id="09K-Jj-ddr"/>
+                        <outlet property="titleTextField" destination="94n-ee-65C" id="enK-ao-58W"/>
                         <segue destination="fXx-om-MdV" kind="unwind" unwindAction="unwindToToDoListWithSegue:" id="bg2-Qc-Q6E"/>
                         <segue destination="fXx-om-MdV" kind="unwind" identifier="saveUnwind" unwindAction="unwindToToDoListWithSegue:" id="0rG-wa-OFJ"/>
                     </connections>
