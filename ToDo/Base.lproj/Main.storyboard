@@ -34,9 +34,7 @@
                     <navigationItem key="navigationItem" title="My To-Do's" id="yWO-G4-D3N">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Kik-6k-fff">
                             <connections>
-                                <segue destination="6e9-sO-68u" kind="popoverPresentation" popoverAnchorBarButtonItem="Kik-6k-fff" id="YXL-lR-tfs">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <segue destination="6e9-sO-68u" kind="presentation" id="YXL-lR-tfs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

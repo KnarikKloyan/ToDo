@@ -16,16 +16,39 @@ class ToDoDetailTableViewController: UITableViewController {
     @IBOutlet var notesTextView: UITextView!
     @IBOutlet var saveButton: UIBarButtonItem!
     
-    var isDatePickerHidden = true
     let dateLabelIndexPath = IndexPath(row: 0, section: 1)
     let datePickerIndexPath = IndexPath(row: 1, section: 1)
     let notesIndexPath = IndexPath(row: 0, section: 2)
+    
+    var isDatePickerHidden = true
+    
+    var todo: ToDo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dueDatePickerView.date = Date().addingTimeInterval(24*60*60)
         updateDueDateLabel(date: dueDatePickerView.date)
         updateSaveButtonState()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+    
+        guard segue.identifier == "saveUnwind" else { return }
+    
+        let title = titleTextField.text!
+        let isComplete = isCompleteButton.isSelected
+        let dueDate = dueDatePickerView.date
+        let notes = notesTextView.text
+        
+        if todo != nil {
+            todo?.title = title
+            todo?.isComplete = isComplete
+            todo?.dueDate = dueDate
+            todo?.notes = notes
+        } else {
+            todo = ToDo(title: title, isComplete: isComplete, dueDate: dueDate, notes: notes)
+        }
     }
     
     func updateSaveButtonState() {
@@ -74,5 +97,4 @@ class ToDoDetailTableViewController: UITableViewController {
             tableView.endUpdates()
         }
     }
-    
 }

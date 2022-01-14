@@ -19,7 +19,21 @@ class ToDoTableViewController: UITableViewController {
             todos = savedToDos
         } else {
             todos = ToDo.loadSampleToDos()
-            }
+        }
+    }
+    
+    @IBAction func unwindToToDoList(segue: UIStoryboardSegue) {
+        guard segue.identifier == "saveUnwind" else { return }
+        let sorceViewController = segue.source as!
+            ToDoDetailTableViewController
+        
+        if let todo = sorceViewController.todo {
+            let newIndexPath = IndexPath(row: todos.count, section: 0)
+            
+            todos.append(todo)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            
+        }
     }
 
     // MARK: - Table view data source
@@ -48,9 +62,4 @@ class ToDoTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
-    
-    @IBAction func unwindToToDoList(segue: UIStoryboardSegue) {
-            
-    }
-    
 }
