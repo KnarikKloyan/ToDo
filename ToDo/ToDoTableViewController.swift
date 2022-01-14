@@ -25,15 +25,30 @@ class ToDoTableViewController: UITableViewController {
     @IBAction func unwindToToDoList(segue: UIStoryboardSegue) {
         guard segue.identifier == "saveUnwind" else { return }
         let sorceViewController = segue.source as!
-            ToDoDetailTableViewController
+        ToDoDetailTableViewController
         
         if let todo = sorceViewController.todo {
-            let newIndexPath = IndexPath(row: todos.count, section: 0)
-            
-            todos.append(todo)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
-            
+            if let indexOfExistingToDo = todos.firstIndex(of: todo) {
+                todos[indexOfExistingToDo] = todo
+                tableView.reloadRows(at: [IndexPath(row: indexOfExistingToDo, section: 0)], with: .automatic)
+            } else {
+                let newIndexPath = IndexPath(row: todos.count, section: 0)
+                todos.append(todo)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
         }
+    }
+    
+    @IBSegueAction func editToDo(_ coder: NSCoder, sender: Any?) -> ToDoDetailTableViewController? {
+        guard let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) else {
+            return nil
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        let detailController = ToDoDetailTableViewController(coder: coder)
+        detailController?.todo = todos[indexPath.row]
+        
+        return detailController
     }
 
     // MARK: - Table view data source
@@ -49,7 +64,6 @@ class ToDoTableViewController: UITableViewController {
         cell.textLabel?.text = todo.title
 
         return cell
-        
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

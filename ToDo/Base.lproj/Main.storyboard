@@ -23,6 +23,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="jqK-9Q-vhh" kind="presentation" destinationCreationSelector="editToDo:sender:" id="XRX-1n-HRP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -41,7 +44,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1f-9p-DMp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="308" y="-18"/>
+            <point key="canvasLocation" x="307.24637681159425" y="-18.080357142857142"/>
         </scene>
         <!--New ToDo-->
         <scene sceneID="EnA-JC-b7i">
@@ -207,7 +210,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nar-EA-AoO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1122" y="-18"/>
+            <point key="canvasLocation" x="1145" y="-434"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YCn-it-et1">
@@ -226,6 +229,9 @@
             <point key="canvasLocation" x="-582" y="-18"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="XRX-1n-HRP"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
