@@ -11,20 +11,46 @@
         <scene sceneID="Zud-Tc-aDA">
             <objects>
                 <tableViewController id="qQk-7i-sJG" customClass="ToDoTableViewController" customModule="ToDo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="sRc-a8-jeA">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="saveUnwind" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="sRc-a8-jeA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoCellIdentifier" id="f72-BL-NGk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ToDoCellIdentifier" id="f72-BL-NGk" customClass="ToDoCell" customModule="ToDo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="32" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f72-BL-NGk" id="aGG-Hc-ehD">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNf-mu-VPC">
+                                            <rect key="frame" x="20" y="6" width="42" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" image="circle" catalog="system">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                                            </state>
+                                            <state key="selected" image="checkmark.circle.fill" catalog="system">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="completeButtonTapped:" destination="f72-BL-NGk" eventType="touchUpInside" id="a3y-eX-waV"/>
+                                                <action selector="isCompleteButtonTapped:" destination="jqK-9Q-vhh" eventType="touchUpInside" id="mUt-lS-yUT"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wr-Ju-S3r">
+                                            <rect key="frame" x="70" y="11" width="324" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="jqK-9Q-vhh" kind="presentation" destinationCreationSelector="editToDo:sender:" id="XRX-1n-HRP"/>
+                                    <outlet property="isCompleteButton" destination="VNf-mu-VPC" id="oCI-92-yuc"/>
+                                    <outlet property="titleLabel" destination="9wr-Ju-S3r" id="OTt-MA-E3j"/>
+                                    <segue destination="6e9-sO-68u" kind="presentation" id="aBH-68-6BD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -44,7 +70,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q1f-9p-DMp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="307.24637681159425" y="-18.080357142857142"/>
+            <point key="canvasLocation" x="287" y="-18"/>
         </scene>
         <!--New ToDo-->
         <scene sceneID="EnA-JC-b7i">
@@ -74,7 +100,7 @@
                                                         <action selector="textEditingChanged:" destination="jqK-9Q-vhh" eventType="editingChanged" id="8xQ-BK-yKo"/>
                                                     </connections>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-Af-8o5">
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PoQ-Af-8o5">
                                                     <rect key="frame" x="10" y="6" width="42" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -102,17 +128,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RbC-2b-OIs">
-                                                    <rect key="frame" x="20" y="15" width="25" height="14.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RbC-2b-OIs">
+                                                    <rect key="frame" x="20" y="12" width="71" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RWH-YI-ARZ">
-                                                    <rect key="frame" x="361" y="15" width="33" height="14.5"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="1/1/22, 1:30 PM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RWH-YI-ARZ">
+                                                    <rect key="frame" x="279.5" y="12" width="114.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -126,10 +152,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="238.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="zCx-Av-HXP">
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="zCx-Av-HXP">
                                                     <rect key="frame" x="20" y="11" width="374" height="216.5"/>
                                                     <connections>
-                                                        <action selector="datePickerChanged:" destination="jqK-9Q-vhh" eventType="primaryActionTriggered" id="jmE-WV-ihl"/>
+                                                        <action selector="datePickerChanged:" destination="jqK-9Q-vhh" eventType="valueChanged" id="bgn-pl-Tk4"/>
                                                     </connections>
                                                 </datePicker>
                                             </subviews>
@@ -155,7 +181,6 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KVr-Oy-Cqz">
                                                     <rect key="frame" x="20" y="11" width="374" height="178"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -178,23 +203,30 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New ToDo" largeTitleDisplayMode="never" id="eB3-Xk-75l">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="iQq-j1-Ayg"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="IRr-OQ-XOV"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="iQq-j1-Ayg">
+                            <connections>
+                                <action selector="cancelTapped:" destination="jqK-9Q-vhh" id="DUw-vR-vSt"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="IRr-OQ-XOV">
+                            <connections>
+                                <segue destination="fXx-om-MdV" kind="unwind" identifier="saveUnwind" unwindAction="unwindToToDoListWithSegue:" id="NM2-u8-3pz"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dueDateLabel" destination="RWH-YI-ARZ" id="rLB-cF-3Du"/>
                         <outlet property="dueDatePickerView" destination="zCx-Av-HXP" id="gSS-lA-ZXd"/>
                         <outlet property="isCompleteButton" destination="PoQ-Af-8o5" id="wi4-jb-FdI"/>
                         <outlet property="notesTextView" destination="KVr-Oy-Cqz" id="fKx-oC-f1m"/>
-                        <outlet property="saveButton" destination="IRr-OQ-XOV" id="09K-Jj-ddr"/>
+                        <outlet property="saveButton" destination="IRr-OQ-XOV" id="Qam-Mp-XvU"/>
                         <outlet property="titleTextField" destination="94n-ee-65C" id="enK-ao-58W"/>
-                        <segue destination="fXx-om-MdV" kind="unwind" unwindAction="unwindToToDoListWithSegue:" id="bg2-Qc-Q6E"/>
-                        <segue destination="fXx-om-MdV" kind="unwind" identifier="saveUnwind" unwindAction="unwindToToDoListWithSegue:" id="0rG-wa-OFJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G0N-k9-EXf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="fXx-om-MdV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1992.753623188406" y="-18.080357142857142"/>
+            <point key="canvasLocation" x="1993" y="-18"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qyp-K3-K1z">
@@ -205,12 +237,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="jqK-9Q-vhh" kind="relationship" relationship="rootViewController" id="yaB-Sw-Y8t"/>
+                        <segue destination="jqK-9Q-vhh" kind="relationship" relationship="rootViewController" destinationCreationSelector="editToDo:sender:" id="yaB-Sw-Y8t"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nar-EA-AoO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1145" y="-434"/>
+            <point key="canvasLocation" x="1183" y="-18"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YCn-it-et1">
@@ -226,11 +258,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fSM-KY-XUo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-582" y="-18"/>
+            <point key="canvasLocation" x="-581" y="-18"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XRX-1n-HRP"/>
+        <segue reference="aBH-68-6BD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>

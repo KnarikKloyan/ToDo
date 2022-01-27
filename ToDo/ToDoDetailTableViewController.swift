@@ -64,14 +64,15 @@ class ToDoDetailTableViewController: UITableViewController {
         let shouldEnableSaveButton = titleTextField.text?.isEmpty == false
         saveButton.isEnabled = shouldEnableSaveButton
     }
-    
-    func updateDueDateLabel(date: Date) {
-        dueDateLabel?.text = ToDo.dueDateFormatter.string(from: date)
-    }
 
+    @IBAction func cancelTapped(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
+    
     @IBAction func textEditingChanged(_ sender: UITextField) {
         updateSaveButtonState()
     }
+    
     @IBAction func returnPressed(_ sender: UITextField) {
         sender.resignFirstResponder()
     }
@@ -82,6 +83,10 @@ class ToDoDetailTableViewController: UITableViewController {
     
     @IBAction func datePickerChanged(_ sender: UIDatePicker) {
         updateDueDateLabel(date: sender.date)
+    }
+    
+    func updateDueDateLabel(date: Date) {
+        dueDateLabel?.text = ToDo.dueDateFormatter.string(from: date)
     }
  
     override func tableView(_ tableView: UITableView,
